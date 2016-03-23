@@ -3,6 +3,4 @@ machine:
     version: oraclejdk8
 dependencies:
   override:
-    - gradle clean build
-cache_directories:
-  - ~/.gradle
+    - gradle clean build --stacktrace --debug
