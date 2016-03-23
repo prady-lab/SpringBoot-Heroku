@@ -1,0 +1,6 @@
+rootProject.name = 'prady-springboot'
+
+include 'common'
+include 'core'
+
+

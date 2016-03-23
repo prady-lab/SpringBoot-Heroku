@@ -1,0 +1,8 @@
+machine:
+  java:
+    version: oraclejdk8
+dependencies:
+  pre:
+  override:
+    - gradle clean build
+
