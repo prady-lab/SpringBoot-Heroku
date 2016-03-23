@@ -5,4 +5,4 @@ dependencies:
   pre: 
     - wget "https://downloads.gradle.org/distributions/gradle-2.12-bin.zip"; unzip gradle-2.12-bin.zip
   override:
-    - gradle -version
+    - gradle-2.12/bin/gradle -version
