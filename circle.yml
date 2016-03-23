@@ -3,6 +3,6 @@ machine:
     version: oraclejdk8
 dependencies:
   pre: 
-    - export TERM="dumb" if [ ! -e .gradle ]; then gradle wrapper ;else echo "Gradle installed" ;fi
+    - export TERM="dumb"; if [ ! -e .gradle ]; then gradle wrapper ; else echo "Gradle installed" ;fi
   override:
     - gradle-2.12/bin/gradle -version
