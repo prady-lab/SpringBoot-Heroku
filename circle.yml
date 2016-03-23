@@ -7,7 +7,7 @@ dependencies:
   override:
     - ./gradlew clean build
 deployment:
-  dev:
+  staging:
     branch: develop
     heroku:
       appname: prady-hello
