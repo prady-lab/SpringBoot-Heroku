@@ -3,6 +3,6 @@ machine:
     version: oraclejdk8
 dependencies:
   pre: 
-    - wget "https://downloads.gradle.org/distributions/gradle-2.12-bin.zip"; unzip gradle-2.12-bin.zip
+    - export TERM="dumb" if [ ! -e .gradle ]; then gradle wrapper ;else echo "Gradle installed" ;fi
   override:
     - gradle-2.12/bin/gradle -version
