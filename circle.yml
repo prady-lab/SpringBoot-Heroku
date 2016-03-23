@@ -2,5 +2,7 @@ machine:
   java:
     version: oraclejdk8
 dependencies:
+  pre: 
+    - wget "https://downloads.gradle.org/distributions/gradle-2.12-bin.zip"; unzip gradle-2.12-bin.zip
   override:
     - gradle clean build --stacktrace --debug
