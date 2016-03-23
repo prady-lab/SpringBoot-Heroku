@@ -3,6 +3,6 @@ machine:
     version: oraclejdk8
 dependencies:
   override:
-    - export TERM="dumb"; ./gradlew clean build
+    - gradle clean build
 cache_directories:
-- ~/.gradle
+  - ~/.gradle
