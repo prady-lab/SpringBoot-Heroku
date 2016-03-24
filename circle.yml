@@ -9,7 +9,7 @@ dependencies:
   cache_directories:
     - ".gradle"
 deployment:
-  staging:
+  dev:
     branch: develop
     heroku:
       appname: prady-hello
