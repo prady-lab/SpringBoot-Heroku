@@ -7,7 +7,7 @@ dependencies:
   override:
     - ./gradlew clean build
   cache_directories:
-	- ".gradle"
+    - ".gradle"
 deployment:
   staging:
     branch: develop
