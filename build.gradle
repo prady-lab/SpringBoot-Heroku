@@ -124,10 +124,10 @@ project('core') {
 		
 		compile "org.springframework.boot:spring-boot-starter-web"
 	}
-}
 
-task stage {
-  dependsOn build
+	task stage {
+		dependsOn build
+	}	
 }
 
 
