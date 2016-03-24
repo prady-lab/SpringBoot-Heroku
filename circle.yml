@@ -6,6 +6,8 @@ dependencies:
     - export TERM="dumb"; if [ ! -e .gradle ]; then gradle wrapper ; else echo "Gradle installed" ;fi
   override:
     - ./gradlew clean build
+  cache_directories:
+	- ".gradle"
 deployment:
   staging:
     branch: develop
