@@ -127,7 +127,7 @@ project('core') {
 }
 
 task stage {
-  // dependsOn build
+  dependsOn build
 }
 
 
