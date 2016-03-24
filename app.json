@@ -1,5 +1,5 @@
 {
-  "name": "Prady Spring Boot Heroku CircleCI",
+  "name": "prady-hello",
   "description": "This is a small demo application for showing Spring Boot, Heroku and CircleCI.",
   "repository": "https://github.com/pradyb/prady-space.git",
   "image": "heroku/java",
