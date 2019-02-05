@@ -1,133 +1,31 @@
 buildscript {
-    repositories {
-        mavenCentral()
-    }
-    dependencies {
-        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.3.3.RELEASE")
-    }
-}
-
-description = 'Sample Spring Boot'
-
-apply plugin: 'base'
-
-task wrapper(type: Wrapper) {
-    gradleVersion = '2.11'
-}
-
-allprojects {
-	group = 'com.prady.sample'
-	version = 0.1
-	
-	repositories {
-		 mavenCentral()
-		 maven { url 'http://repo.spring.io/plugins-release' }
-	}	
-		
-	
 	ext {
-		springVersion = '4.2.5.RELEASE'
-		springDataVersion = '1.9.4.RELEASE'
-		springSecurityVersion = '4.0.4.RELEASE'
-		springSecurityOAuth2Version ='2.0.9.RELEASE'
-		
-		aspectjVersion = '1.8.8'
-		
-		slf4jVersion = '1.7.18'
-		log4jVersion = '2.5'
-	
+		springBootVersion = '2.1.2.RELEASE'
 	}
-	
-}
-
-subprojects { subproject ->
-
-	apply plugin: 'java'
-	apply plugin: 'jacoco'
-	apply plugin: 'eclipse'
-	apply plugin: 'idea'
-		
-    compileJava {
-        sourceCompatibility = 1.8
-        targetCompatibility = 1.8
-        options.encoding = 'UTF-8'
-    }
-
-	eclipse {
-		project {
-			natures += 'org.springframework.ide.eclipse.core.springnature'
-		}
-		classpath {
-			downloadSources=true
-		}	
+	repositories {
+		mavenCentral()
 	}
-
-	ext.xLintArg = '-Xlint:all'
-	[compileJava, compileTestJava]*.options*.compilerArgs = [xLintArg]
-
-	tasks.withType(Test).all {
-		// suppress all console output during testing unless running `gradle -i`
-		logging.captureStandardOutput(LogLevel.INFO)
-
-		jacoco {
-			append = false
-			destinationFile = file("$buildDir/jacoco.exec")
-		}
-
-		include '**/*Test.class'
-		exclude '**/Abstract*.class'
-	}
-	
-	test {
-		useTestNG {
-			 useDefaultListeners = true
-		}
-		
-		// ignoreFailures true
-	}
-	
-	jacoco {
-		toolVersion = '0.7.5.201505241946'
-	}
-
-	jacocoTestReport {
-		reports {
-			xml.enabled false
-			csv.enabled false
-			html.destination "${buildDir}/jacocoHtml"
-		}
-	}	
-	
 	dependencies {
-		testCompile 'com.h2database:h2:1.4.191'
-		testCompile "org.springframework:spring-test:$springVersion"
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
 	}
-
-
-	jar {
-		manifest.attributes["Created-By"] =	'${System.getProperty("java.version")} (${System.getProperty("java.specification.vendor")})'
-		manifest.attributes["Implementation-Title"] = subproject.name
-		manifest.attributes["Implementation-Version"] = subproject.version
-	}
-	
 }
 
-project('core') {
-	description = 'Core Application'
-	
-	apply plugin: 'spring-boot'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
 
-	// mainClassName = "com.prady.sample.boot.Application"
+group = 'com.prady.sample'
+version = '0.0.1'
+sourceCompatibility = '1.8'
 
-	dependencies {
-		compile project(':common')
-		
-		compile "org.springframework.boot:spring-boot-starter-web"
-	}
-
-	task stage {
-		dependsOn build
-	}	
+repositories {
+	mavenCentral()
 }
 
-
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-actuator'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
+	runtimeOnly 'com.h2database:h2'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+}
