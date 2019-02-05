@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
  */
 @RestController
 public class HelloController {
-	private static final String template = "Hello, %s!";
+	private static final String template = "Hello, %s !";
 
 	@RequestMapping("/hello")
 	public String greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
