@@ -1,0 +1,30 @@
+version: 2.1
+jobs: 
+  build: 
+    working_directory: ~/prady-hello
+
+    docker: 
+      - image: circleci/openjdk:8-jdk-browsers
+
+    steps: 
+
+      - checkout
+
+      - restore_cache:
+          key: prady-hello-{{ checksum "build.gradle" }}
+      
+      - run: ./gradlew clean
+      
+      - save_cache: 
+          paths:
+            - ~/.m2
+            - .gradle
+          key: prady-hello-{{ checksum "build.gradle" }}
+      
+      - run: ./gradlew build
+      
+      - store_test_results: 
+          path: build/test
+      
+      - store_artifacts: 
+          path: build/libs/hello-service-0.0.1.jar
